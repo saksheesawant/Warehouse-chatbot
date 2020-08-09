@@ -1,0 +1,284 @@
+{
+  "intents": [
+    {
+      "intent": "enquiries",
+      "examples": [
+        {
+          "text": "menu"
+        },
+        {
+          "text": "What are the products available?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "Morning"
+        },
+        {
+          "text": "Hola"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hello"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "order",
+      "examples": [
+        {
+          "text": "where do i place the order"
+        },
+        {
+          "text": "order"
+        },
+        {
+          "text": "place order"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "warehouse",
+      "examples": [
+        {
+          "text": "What is this system about"
+        },
+        {
+          "text": "warehouse"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "offers",
+      "examples": [
+        {
+          "text": "What are the offers available"
+        },
+        {
+          "text": "offers"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "offers",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "offer",
+          "synonyms": [
+            "discount"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Enquiries",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Visit our website by clicking on this link:https://node-red-zgmwz.eu-gb.mybluemix.net/excel"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Available Products",
+            "source": "https://listonic.com/wp-content/uploads/2018/12/shopping-list-template-basic-grocery-list.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#enquiries",
+      "dialog_node": "node_10_1595156164781",
+      "previous_sibling": "node_4_1595157229197"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_2_1595155615827",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Order",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You can place your order in our website by just clicking the \" Click here to place order button  \".It opens a form you just need to select the qty of products required or click on this link:\nhttps://docs.google.com/forms/d/e/1FAIpQLSfT6f3SPCyS2GeIMkOxTsIcjBKV59OQ5MyjT7q_MwN8Tb9xLQ/viewform"
+              },
+              {
+                "text": "click on this link:\nhttps://docs.google.com/forms/d/e/1FAIpQLSfT6f3SPCyS2GeIMkOxTsIcjBKV59OQ5MyjT7q_MwN8Tb9xLQ/viewform"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#order",
+      "dialog_node": "node_7_1595157505299",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Greeting",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello Sir / Madam ,how may I help you ?"
+              },
+              {
+                "text": "Hi"
+              },
+              {
+                "text": "Hello"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "node_2_1595155615827",
+      "previous_sibling": "node_2_1595155654033"
+    },
+    {
+      "type": "standard",
+      "title": "Offers",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Free milk for 3 days,for orders above Rs 1499."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#offers",
+      "dialog_node": "node_2_1595155654033",
+      "previous_sibling": "node_10_1595156164781"
+    },
+    {
+      "type": "standard",
+      "title": "Warehouse",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The specialty of our system is that it predicts the sale for any given month.It also gives the customer to place orders and talk to the chat bot regarding any queries"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#warehouse",
+      "dialog_node": "node_4_1595157229197",
+      "previous_sibling": "node_7_1595157505299"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Warehouse  Chatbot",
+  "language": "en",
+  "description": ""
+}
